@@ -16,5 +16,5 @@ steps:
     scheme: ''
     sdk: 'macos'
     configuration: 'Release'
-    xcWorkspacePath: 'mac/mtg_mac.xcodeproj/project.xcworkspace'
+    xcWorkspacePath: 'mac/mtg_mac.xcodeproj'
     xcodeVersion: 'default' # Options: 8, 9, 10, default, specifyPath
