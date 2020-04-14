@@ -6,7 +6,7 @@ mac-gestures
 This project is a fork of https://github.com/mcourteaux/MultiTouch-Gestures-Java, rewritten in Kotlin with the addition 
 of the **smart magnify** event and published in **JCenter** for easy consumption.
 
-It aims to provide an easy way to enable MultiTouch touchpad gestures for JVM projects in Swing. This project
+It aims to provide an easy way to enable MultiTouch touchpad gestures for JVM projects in Swing and AWT. This project
 was originally started as an alternative for the AppleJavaExtensions `com.apple.eawt` package.
 
 Read this is you came here because `com.apple.eawt` is not working
