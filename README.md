@@ -72,7 +72,7 @@ or in Java:
 if (MacOsGestures.isSupported()) {}
 ```
 
-Once you determine that the library can be used, you can add listeners on an awt `Component` instances
+Once you determine that the library can be used, you can add listeners on an awt `Component` instance
 (thus allowing you to add them to a `JFrame` instance too) like so:
 
 ```kotlin
