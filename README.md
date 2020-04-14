@@ -79,6 +79,7 @@ Once you determine that the library can be used, you can add listeners on an awt
 import com.savvasdalkitsis.mac.gestures.MacOsGesturesUtilities.addGestureListener
 
 component.addGestureListener(object : GestureAdapter() {
+
      override fun magnify(e: GestureEvent<Magnification>) {}
 
      override fun rotate(e: GestureEvent<Rotation>) {}
@@ -93,6 +94,7 @@ or in Java:
 
 ```java
 MacOsGesturesUtilities.addGestureListener(component, new GestureAdapter() {
+
     @Override
     public void magnify(@NotNull GestureEvent<Magnification> e) {}
 
