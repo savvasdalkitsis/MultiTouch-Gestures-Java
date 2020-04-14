@@ -15,6 +15,7 @@ object MacOsGesturesUtilities {
     private var listenerCount = 0
 
     @JvmStatic
+    @JvmOverloads
     fun Component.addGestureListener(listener: GestureListener, receiveEvenIfNotOnTop: Boolean = false) {
         if (listenerCount == 0) {
             MacOsGestures.startInSeparateThread()

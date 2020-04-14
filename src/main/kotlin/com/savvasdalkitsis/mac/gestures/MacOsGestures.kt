@@ -12,7 +12,8 @@ import javax.swing.SwingUtilities
 
 object MacOsGestures {
 
-    var supported: Boolean = false
+    @get:JvmStatic
+    var isSupported: Boolean = false
         private set
 
     private var gestureEventThread: Thread? = null
@@ -26,7 +27,7 @@ object MacOsGestures {
                     log.info("In shutdownhook. Stopping Event Tap.")
                     stop()
                 })
-                supported = true
+                isSupported = true
             } catch (e: Throwable) {
                 log.log(Level.WARNING, "Could not load multitouch gesture library", e)
             }
@@ -37,7 +38,7 @@ object MacOsGestures {
 
     @Synchronized
     fun startInSeparateThread() {
-        if (supported && gestureEventThread?.isAlive != true) {
+        if (isSupported && gestureEventThread?.isAlive != true) {
             gestureEventThread = Thread {
                 init()
                 start()

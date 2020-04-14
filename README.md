@@ -1,8 +1,12 @@
-
-MultiTouch Gestures for Java
+mac-gestures
 ============================
 
-This project aims to provide an easy way to enable MultiTouch touchpad gestures for Java in Swing. This project
+**mac-gestures** is a library for accessing multitouch gesture events on macOS for the JVM written in Kotlin
+
+This project is a fork of https://github.com/mcourteaux/MultiTouch-Gestures-Java, rewritten in Kotlin with the addition 
+of the **smart magnify** event and published in **JCenter** for easy consumption.
+
+It aims to provide an easy way to enable MultiTouch touchpad gestures for JVM projects in Swing. This project
 was originally started as an alternative for the AppleJavaExtensions `com.apple.eawt` package.
 
 Read this is you came here because `com.apple.eawt` is not working
@@ -31,65 +35,116 @@ Since my personal need for now is only OS X, this is supported. However, if anyo
 for other platforms as well, feel free to fork and create a corresponding native source file for
 your platform.
 
+Download
+-----
+The library is available on **JCenter**.
 
-Building
---------
+To use it in your project, add the following to your project
 
-Building the native library will automatically place the resuting binary in the resources folder
-of the Java project. The Java library will automatically extract the required native binary to
-a temporary file (that will be deleted after the application quits) and link against it. So,
-the only thing you will have to do to be able to use this is to build the native library and
-include the Java project as a dependency in Maven or add it manually to the classpath.
-
-### Java
-This project is a Maven project made in NetBeans on the Java side of it. So just open this in NetBeans
-and you are basically good to go. You can compile this manually as well.
-
-### Native Mac OS X
-This is an Xcode project that resides in the mac/ directory. Just open the project in Xcode and hit
-"Run". This will produce the native library file (ending in .dylib) on the right location.
-
-Testing
--------
-There is a test file provided in:
-
-    src/main/java/com/martijncourteaux/multitouchgestures/demo/DemoSimpleGestures.java
-
-You can have a look at that file for a sample.
-
-You can see how this compares to the Apple Gesture support using this demo file:
-
-    src/main/java/com/martijncourteaux/multitouchgestures/demo/DemoCompareGestures.java
+- Gradle:
+```groovy
+implementation 'com.savvasdalkitsis:mac-gestures:0.0.5'
+```
+- Maven:
+```xml
+<dependency>
+  <groupId>com.savvasdalkitsis</groupId>
+  <artifactId>mac-gestures</artifactId>
+  <version>0.0.5</version>
+</dependency>
+```
 
 Usage
 -----
-The usage is pretty similar to Apple's AppleJavaExtensions package from Java 6. You build your
-Swing frame, just as regular. Then you can do this:
 
-    MultiTouchGestureUtilities.addGestureListener(comp, listener);
+The library will automatically load the first time you reference the class `MacOsGestures`.
 
-Where `listener` is a `MultiTouchGestureListener` and `comp` is the JComponent you want to add
-the listener to. **When you dispose/remove a JFrame or component with a listener, you *MUST*
-remove the `MultiTouchGestureListener` using one of following techniques:**
+A property will help you determine if the library can be used or not (which can either mean
+you are not on a macOS system, or the native library failed to load):
 
-    MultiTouchGestureUtilities.removeGestureListener(comp, listener);
-    MultiTouchGestureUtilities.removeAllGestureListeners(comp);
+```kotlin
+if (MacOsGestures.isSupported) {}
+```
 
-The `MultiTouchGestureListener` interface has these methods:
+or in Java:
 
-    public void magnify(MagnifyGestureEvent e);
-    public void rotate(RotateGestureEvent e);
-    public void scroll(ScrollGestureEvent e);
+```java
+if (MacOsGestures.isSupported()) {}
+```
 
-Where each event type has these parameters:
+Once you determine that the library can be used, you can add listeners on an awt `Component` instances
+(thus allowing you to add them to a `JFrame` instance too) like so:
 
+```kotlin
+import com.savvasdalkitsis.mac.gestures.MacOsGesturesUtilities.addGestureListener
+
+component.addGestureListener(object : GestureAdapter() {
+     override fun magnify(e: GestureEvent<Magnification>) {}
+
+     override fun rotate(e: GestureEvent<Rotation>) {}
+
+     override fun scroll(e: GestureEvent<Scroll>) {}
+
+     override fun smartMagnify(e: GestureEvent<SmartMagnify>) {}
+})
+```
+
+or in Java:
+
+```java
+MacOsGesturesUtilities.addGestureListener(component, new GestureAdapter() {
+    @Override
+    public void magnify(@NotNull GestureEvent<Magnification> e) {}
+
+    @Override
+    public void rotate(@NotNull GestureEvent<Rotation> e) {}
+
+    @Override
+    public void scroll(@NotNull GestureEvent<Scroll> e) {}
+
+    @Override
+    public void smartMagnify(@NotNull GestureEvent<SmartMagnify> e) {}
+});
+```
+
+The `addGestureListener` also takes an optional parameter `receiveEvenIfNotOnTop` which, when set to `true`
+will deliver events to the specified component even if there is another component on top of it and under the mouse 
+(this can be useful in cases where you have a different window surface, like OpenGL, 'inside' your JFrame and normal
+mouse listeners would not work).
+
+**When you dispose/remove a JFrame or component with a listener, you *MUST*
+remove the `GestureListener` using one of following techniques:**
+
+```kotlin
+component.removeGestureListener(listener)
+```
+
+or
+
+```kotlin
+component.removeAllGestureListeners()
+```
+
+The `GestureListener` interface has these methods:
+
+```kotlin
+    fun magnify(e: GestureEvent<Magnification>)
+    fun rotate(e: GestureEvent<Rotation>)
+    fun scroll(e: GestureEvent<Scroll>)
+    fun smartMagnify(e: GestureEvent<SmartMagnify>)
+```
+
+Where `GestureEvent` has these parameters:
+
+ - `source`: the component that received the event.
  - `mouseX`: x-coordinate of the mouse in the component space.
  - `mouseX`: y-coordinate of the mouse in the component space.
  - `absMouseX`: x-coordinate of the mouse on the screen
  - `absMouseY`: y-coordinate of the mouse on the screen
- - `phase`: a `GesturePhase` enum indicating what phase the gesture is in.
+ - `phase`: a `Phase` enum indicating what phase the gesture is in.
+ - `data`: the data of the specific event generated.
 
-A `GesturePhase` is an enum containing these values:
+A `Phase` is an enum containing these values:
 
  - `MOMENTUM`: Indicates this event is caused by momentum (like OS X).
  - `BEGIN`: The gesture just began.
@@ -103,6 +158,6 @@ A `GesturePhase` is an enum containing these values:
 Remark for OS X
 ---------------
 The built-in Java scrolling listeners are not as smooth as the one provided in this project.
-So I highly recommend checking it out. This gives you the native OS X scrolling experience.
+This gives you the native OS X scrolling experience.
 
 
