@@ -1,6 +1,6 @@
 package com.savvasdalkitsis.mac.gestures
 
-import com.savvasdalkitsis.mac.gestures.MultiTouchGestureUtilities.notifyListenersIfNeeded
+import com.savvasdalkitsis.mac.gestures.MacOsGesturesUtilities.notifyListenersIfNeeded
 import com.savvasdalkitsis.mac.gestures.event.*
 import com.savvasdalkitsis.mac.gestures.event.Phase.Companion.getByCode
 import java.awt.Toolkit
@@ -10,7 +10,7 @@ import java.util.logging.Level
 import java.util.logging.Logger
 import javax.swing.SwingUtilities
 
-object EventDispatch {
+object MacOsGestures {
 
     var supported: Boolean = false
         private set

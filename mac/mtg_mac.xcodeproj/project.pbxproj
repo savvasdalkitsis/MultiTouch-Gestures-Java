@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1020E4DB1B4575BC008E4CB3 /* EventDispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1020E4D91B4575BC008E4CB3 /* EventDispatch.h */; };
-		1020E4DC1B4575BC008E4CB3 /* EventDispatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1020E4DA1B4575BC008E4CB3 /* EventDispatch.mm */; };
+		1020E4DB1B4575BC008E4CB3 /* MacOsGestures.h in Headers */ = {isa = PBXBuildFile; fileRef = 1020E4D91B4575BC008E4CB3 /* MacOsGestures.h */; };
+		1020E4DC1B4575BC008E4CB3 /* MacOsGestures.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1020E4DA1B4575BC008E4CB3 /* MacOsGestures.mm */; };
 		1097172E1B42ABDE005A0E28 /* libmtg_mac.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 109717121B42AA96005A0E28 /* libmtg_mac.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		109717321B42AFCD005A0E28 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109717311B42AFCD005A0E28 /* Cocoa.framework */; };
 		109717351B42AFE6005A0E28 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109717331B42AFE6005A0E28 /* CoreFoundation.framework */; };
@@ -30,8 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1020E4D91B4575BC008E4CB3 /* EventDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDispatch.h; sourceTree = SOURCE_ROOT; };
-		1020E4DA1B4575BC008E4CB3 /* EventDispatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EventDispatch.mm; sourceTree = SOURCE_ROOT; };
+		1020E4D91B4575BC008E4CB3 /* MacOsGestures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacOsGestures.h; sourceTree = SOURCE_ROOT; };
+		1020E4DA1B4575BC008E4CB3 /* MacOsGestures.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MacOsGestures.mm; sourceTree = SOURCE_ROOT; };
 		109717121B42AA96005A0E28 /* libmtg_mac.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmtg_mac.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		109717311B42AFCD005A0E28 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		109717331B42AFE6005A0E28 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -77,8 +77,8 @@
 		109717141B42AA96005A0E28 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				1020E4D91B4575BC008E4CB3 /* EventDispatch.h */,
-				1020E4DA1B4575BC008E4CB3 /* EventDispatch.mm */,
+				1020E4D91B4575BC008E4CB3 /* MacOsGestures.h */,
+				1020E4DA1B4575BC008E4CB3 /* MacOsGestures.mm */,
 			);
 			name = src;
 			path = OSXGestures4JavaJNI;
@@ -91,7 +91,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1020E4DB1B4575BC008E4CB3 /* EventDispatch.h in Headers */,
+				1020E4DB1B4575BC008E4CB3 /* MacOsGestures.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1020E4DC1B4575BC008E4CB3 /* EventDispatch.mm in Sources */,
+				1020E4DC1B4575BC008E4CB3 /* MacOsGestures.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

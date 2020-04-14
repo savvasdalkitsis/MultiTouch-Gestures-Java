@@ -9,7 +9,7 @@ import java.util.*
 import javax.swing.SwingUtilities
 import kotlin.math.roundToInt
 
-object MultiTouchGestureUtilities {
+object MacOsGesturesUtilities {
 
     private val clients = HashMap<Component, MultiTouchClient>()
     private var listenerCount = 0
@@ -17,7 +17,7 @@ object MultiTouchGestureUtilities {
     @JvmStatic
     fun Component.addGestureListener(listener: GestureListener, receiveEvenIfNotOnTop: Boolean = false) {
         if (listenerCount == 0) {
-            EventDispatch.startInSeparateThread()
+            MacOsGestures.startInSeparateThread()
         }
         val client = clients.getOrPut(this) {
             MultiTouchClient(this, receiveEvenIfNotOnTop)
@@ -37,7 +37,7 @@ object MultiTouchGestureUtilities {
             }
             listenerCount--
             if (listenerCount == 0) {
-                EventDispatch.stop()
+                MacOsGestures.stop()
             }
             return true
         }

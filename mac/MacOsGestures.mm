@@ -1,5 +1,5 @@
 //
-//  EventDispatch.cpp
+//  MacOsGestures.cpp
 //  OSXGestures4JavaJNI
 //
 //  Created by Martijn Courteaux on 30/06/15.
@@ -10,10 +10,10 @@
 
 #import <AppKit/AppKit.h>
 
-#include "EventDispatch.h"
+#include "MacOsGestures.h"
 
 JNIEnv *env;
-jclass jc_EventDispatch;
+jclass jc_MacOsGestures;
 jmethodID jm_dispatchMagnifyGesture;
 jmethodID jm_dispatchRotateGesture;
 jmethodID jm_dispatchScrollWheelEvent;
@@ -72,23 +72,23 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     {
         case NSEventTypeMagnify:
         {
-            env->CallStaticVoidMethod(jc_EventDispatch, jm_dispatchMagnifyGesture, x, y, event.magnification, phase);
+            env->CallStaticVoidMethod(jc_MacOsGestures, jm_dispatchMagnifyGesture, x, y, event.magnification, phase);
             break;
         }
         case NSEventTypeRotate:
         {
-            env->CallStaticVoidMethod(jc_EventDispatch, jm_dispatchRotateGesture, x, y, event.rotation, phase);
+            env->CallStaticVoidMethod(jc_MacOsGestures, jm_dispatchRotateGesture, x, y, event.rotation, phase);
             break;
         }
         case NSEventTypeScrollWheel:
         {
             bool fromMouse = event.subtype == NSEventSubtypeMouseEvent;
-            env->CallStaticVoidMethod(jc_EventDispatch, jm_dispatchScrollWheelEvent, x, y, event.scrollingDeltaX, event.scrollingDeltaY, fromMouse, phase);
+            env->CallStaticVoidMethod(jc_MacOsGestures, jm_dispatchScrollWheelEvent, x, y, event.scrollingDeltaX, event.scrollingDeltaY, fromMouse, phase);
             break;
         }
         case NSEventTypeSmartMagnify:
         {
-            env->CallStaticVoidMethod(jc_EventDispatch, jm_dispatchSmartMagnifyEvent, x, y, phase);
+            env->CallStaticVoidMethod(jc_MacOsGestures, jm_dispatchSmartMagnifyEvent, x, y, phase);
             break;
         }
         default:
@@ -98,19 +98,19 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     return [event CGEvent];
 }
 
-void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_init(JNIEnv *env, jclass clazz)
+void JNICALL Java_com_savvasdalkitsis_mac_gestures_MacOsGestures_init(JNIEnv *env, jclass clazz)
 {
     printf("[NATIVE] Prepare JNI Gesture Listener.\n");
     fflush(stdout);
     ::env = env;
-    jc_EventDispatch = clazz;
-    jm_dispatchMagnifyGesture = env->GetStaticMethodID(jc_EventDispatch, "dispatchMagnifyGesture", "(DDDI)V");
-    jm_dispatchRotateGesture = env->GetStaticMethodID(jc_EventDispatch, "dispatchRotateGesture", "(DDDI)V");
-    jm_dispatchScrollWheelEvent = env->GetStaticMethodID(jc_EventDispatch, "dispatchScrollWheelEvent", "(DDDDZI)V");
-    jm_dispatchSmartMagnifyEvent = env->GetStaticMethodID(jc_EventDispatch, "dispatchSmartMagnifyEvent", "(DDI)V");
+    jc_MacOsGestures = clazz;
+    jm_dispatchMagnifyGesture = env->GetStaticMethodID(jc_MacOsGestures, "dispatchMagnifyGesture", "(DDDI)V");
+    jm_dispatchRotateGesture = env->GetStaticMethodID(jc_MacOsGestures, "dispatchRotateGesture", "(DDDI)V");
+    jm_dispatchScrollWheelEvent = env->GetStaticMethodID(jc_MacOsGestures, "dispatchScrollWheelEvent", "(DDDDZI)V");
+    jm_dispatchSmartMagnifyEvent = env->GetStaticMethodID(jc_MacOsGestures, "dispatchSmartMagnifyEvent", "(DDI)V");
 }
 
-void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_start(JNIEnv *env, jclass)
+void JNICALL Java_com_savvasdalkitsis_mac_gestures_MacOsGestures_start(JNIEnv *env, jclass)
 {
     printf("[NATIVE] Starting JNI Gesture Listener Tap.\n");
     fflush(stdout);
@@ -125,7 +125,7 @@ void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_start(JNIEnv *e
     }
 }
 
-void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_stop(JNIEnv *, jclass)
+void JNICALL Java_com_savvasdalkitsis_mac_gestures_MacOsGestures_stop(JNIEnv *, jclass)
 {
     printf("[NATIVE] Stopping JNI Gesture Listener Tap.\n");
     fflush(stdout);
