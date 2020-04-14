@@ -67,15 +67,7 @@ object MultiTouchGestureUtilities {
             if (r.contains(mXi, mYi) && client.shouldReceiveEvent) {
                 val relP = Point(mXi, mYi)
                 SwingUtilities.convertPointFromScreen(relP, component)
-                val event = GestureEvent(
-                        component,
-                        relP.getX(),
-                        relP.getY(),
-                        mouseX,
-                        mouseY,
-                        phase,
-                        data
-                )
+                val event = GestureEvent(component, relP.getX(), relP.getY(), mouseX, mouseY, phase, data)
                 for (listener in client.listeners) {
                     listener.dispatch(event)
                 }

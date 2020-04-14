@@ -60,48 +60,28 @@ object EventDispatch {
     @Suppress("unused") // called from native code
     @JvmStatic
     fun dispatchMagnifyGesture(mouseX: Double, mouseY: Double, magnification: Double, phase: Int) =
-            dispatch(
-                    mouseX,
-                    mouseY,
-                    phase,
-                    Magnification(magnification)
-            ) { event ->
+            dispatch(mouseX, mouseY, phase, Magnification(magnification)) { event ->
                 magnify(event)
             }
 
     @Suppress("unused") // called from native code
     @JvmStatic
     fun dispatchRotateGesture(mouseX: Double, mouseY: Double, rotation: Double, phase: Int) =
-            dispatch(
-                    mouseX,
-                    mouseY,
-                    phase,
-                    Rotation(-toRadians(rotation))
-            ) { event ->
+            dispatch(mouseX, mouseY, phase, Rotation(-toRadians(rotation))) { event ->
                 rotate(event)
             }
 
     @Suppress("unused") // called from native code
     @JvmStatic
     fun dispatchScrollWheelEvent(mouseX: Double, mouseY: Double, deltaX: Double, deltaY: Double, fromMouse: Boolean, phase: Int) =
-            dispatch(
-                    mouseX,
-                    mouseY,
-                    phase,
-                    Scroll(deltaX, deltaY, fromMouse)
-            ) { event ->
+            dispatch(mouseX, mouseY, phase, Scroll(deltaX, deltaY, fromMouse)) { event ->
                 scroll(event)
             }
 
     @Suppress("unused") // called from native code
     @JvmStatic
     fun dispatchSmartMagnifyEvent(mouseX: Double, mouseY: Double, phase: Int) =
-            dispatch(
-                    mouseX,
-                    mouseY,
-                    phase,
-                    SmartMagnify
-            ) { event ->
+            dispatch(mouseX, mouseY, phase, SmartMagnify) { event ->
                 smartMagnify(event)
             }
 
