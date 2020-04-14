@@ -1,5 +1,6 @@
 *.log
+.idea
+build/
+.gradle
 target/
 *.dylib
-mac/mtg_mac.xcodeproj/project.xcworkspace/
-mac/mtg_mac.xcodeproj/xcuserdata/
