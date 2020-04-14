@@ -43,14 +43,14 @@ To use it in your project, add the following to your project
 
 - Gradle:
 ```groovy
-implementation 'com.savvasdalkitsis:mac-gestures:0.0.5'
+implementation 'com.savvasdalkitsis:mac-gestures:0.0.7'
 ```
 - Maven:
 ```xml
 <dependency>
   <groupId>com.savvasdalkitsis</groupId>
   <artifactId>mac-gestures</artifactId>
-  <version>0.0.5</version>
+  <version>0.0.7</version>
 </dependency>
 ```
 

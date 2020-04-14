@@ -1,24 +1,18 @@
 package com.savvasdalkitsis.mac.gestures
 
-import com.savvasdalkitsis.mac.gestures.event.GestureEvent
-import com.savvasdalkitsis.mac.gestures.event.Phase
 import java.awt.Component
-import java.awt.Point
-import java.awt.Rectangle
 import java.util.*
-import javax.swing.SwingUtilities
-import kotlin.math.roundToInt
 
 object MacOsGesturesUtilities {
 
-    private val clients = HashMap<Component, MultiTouchClient>()
+    internal val clients = HashMap<Component, MultiTouchClient>()
     private var listenerCount = 0
 
     @JvmStatic
     @JvmOverloads
     fun Component.addGestureListener(listener: GestureListener, receiveEvenIfNotOnTop: Boolean = false) {
         if (listenerCount == 0) {
-            MacOsGestures.startInSeparateThread()
+            MacOsGesturesEventDispatcher.startInSeparateThread()
         }
         val client = clients.getOrPut(this) {
             MultiTouchClient(this, receiveEvenIfNotOnTop)
@@ -38,7 +32,7 @@ object MacOsGesturesUtilities {
             }
             listenerCount--
             if (listenerCount == 0) {
-                MacOsGestures.stop()
+                MacOsGesturesNative.stop()
             }
             return true
         }
@@ -55,25 +49,5 @@ object MacOsGesturesUtilities {
             }
         }
         return removed
-    }
-
-    fun <D> notifyListenersIfNeeded(
-            mouseX: Double, mouseY: Double, phase: Phase, data: D, dispatch: GestureListener.(GestureEvent<D>) -> Unit
-    ) {
-        val mXi = mouseX.roundToInt()
-        val mYi = mouseY.roundToInt()
-        for ((component, client) in clients) {
-            if (!component.isShowing) continue
-            val r = Rectangle(component.locationOnScreen, component.size)
-            if (r.contains(mXi, mYi) && client.shouldReceiveEvent) {
-                val relP = Point(mXi, mYi)
-                SwingUtilities.convertPointFromScreen(relP, component)
-                val event = GestureEvent(component, relP.getX(), relP.getY(), mouseX, mouseY, phase, data)
-                for (listener in client.listeners) {
-                    listener.dispatch(event)
-                }
-                return
-            }
-        }
     }
 }
