@@ -98,7 +98,7 @@ CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     return [event CGEvent];
 }
 
-void JNICALL Java_com_savvasdalkitsis_multitouch_EventDispatch_init(JNIEnv *env, jclass clazz)
+void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_init(JNIEnv *env, jclass clazz)
 {
     printf("[NATIVE] Prepare JNI Gesture Listener.\n");
     fflush(stdout);
@@ -110,7 +110,7 @@ void JNICALL Java_com_savvasdalkitsis_multitouch_EventDispatch_init(JNIEnv *env,
     jm_dispatchSmartMagnifyEvent = env->GetStaticMethodID(jc_EventDispatch, "dispatchSmartMagnifyEvent", "(DDI)V");
 }
 
-void JNICALL Java_com_savvasdalkitsis_multitouch_EventDispatch_start(JNIEnv *env, jclass)
+void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_start(JNIEnv *env, jclass)
 {
     printf("[NATIVE] Starting JNI Gesture Listener Tap.\n");
     fflush(stdout);
@@ -125,7 +125,7 @@ void JNICALL Java_com_savvasdalkitsis_multitouch_EventDispatch_start(JNIEnv *env
     }
 }
 
-void JNICALL Java_com_savvasdalkitsis_multitouch_EventDispatch_stop(JNIEnv *, jclass)
+void JNICALL Java_com_savvasdalkitsis_mac_gestures_EventDispatch_stop(JNIEnv *, jclass)
 {
     printf("[NATIVE] Stopping JNI Gesture Listener Tap.\n");
     fflush(stdout);

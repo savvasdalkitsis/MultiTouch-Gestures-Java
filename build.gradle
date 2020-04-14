@@ -1,33 +1,28 @@
 buildscript {
-    ext.dev_name = 'Savvas Dalkitsis'
-    ext.dev_email = 'kurosavvas@gmail.com'
-    ext.github_name = 'savvasdalkitsis'
-
-    ext.project_name = 'mac-gestures'
-    ext.project_description = 'mac-gestures is a library for accessing multitouch gesture events on macOS for the JVM written in Kotlin'
-    ext.project_group = 'com.savvasdalkitsis'
-    ext.project_artifact = 'mac-gestures'
-    ext.project_version = '1.0.0-SNAPSHOT'
-    ext.project_license = 'The Apache Software License, Version 2.0'
-    ext.project_license_tag = 'Apache-2.0'
-    ext.project_license_url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
-
     repositories {
         mavenCentral()
         jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.71'
-    id 'java'
+    id 'java-library'
+    id "com.jfrog.bintray" version "1.8.5"
+    id 'maven-publish'
 }
 
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
+def dev_name = 'Savvas Dalkitsis'
+def dev_email = 'kurosavvas@gmail.com'
+def github_name = 'savvasdalkitsis'
+def project_name = 'mac-gestures'
+def project_description = 'mac-gestures is a library for accessing multitouch gesture events on macOS for the JVM written in Kotlin'
+def project_group = 'com.savvasdalkitsis'
+def project_artifact = 'mac-gestures'
+def project_version = '0.0.1'
+def project_license = 'The Apache Software License, Version 2.0'
+def project_license_tag = 'Apache-2.0'
+def project_license_url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
 
 repositories {
     mavenCentral()
