@@ -9,5 +9,6 @@ class GestureEvent<D>(
         val absMouseX: Double,
         val absMouseY: Double,
         val phase: Phase,
+        val momentumPhase: Phase,
         val data: D
 )
