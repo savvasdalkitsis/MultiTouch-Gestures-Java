@@ -1,8 +1,8 @@
-package com.savvasdalkitsis.multitouch
+package com.savvasdalkitsis.mac.gestures
 
-import com.savvasdalkitsis.multitouch.MultiTouchGestureUtilities.notifyListenersIfNeeded
-import com.savvasdalkitsis.multitouch.event.Phase.Companion.getByCode
-import com.savvasdalkitsis.multitouch.event.*
+import com.savvasdalkitsis.mac.gestures.MultiTouchGestureUtilities.notifyListenersIfNeeded
+import com.savvasdalkitsis.mac.gestures.event.*
+import com.savvasdalkitsis.mac.gestures.event.Phase.Companion.getByCode
 import java.awt.Toolkit
 import java.io.File.createTempFile
 import java.lang.Math.toRadians

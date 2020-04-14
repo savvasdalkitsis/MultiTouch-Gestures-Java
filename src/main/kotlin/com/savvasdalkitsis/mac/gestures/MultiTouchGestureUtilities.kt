@@ -1,7 +1,7 @@
-package com.savvasdalkitsis.multitouch
+package com.savvasdalkitsis.mac.gestures
 
-import com.savvasdalkitsis.multitouch.event.GestureEvent
-import com.savvasdalkitsis.multitouch.event.Phase
+import com.savvasdalkitsis.mac.gestures.event.GestureEvent
+import com.savvasdalkitsis.mac.gestures.event.Phase
 import java.awt.Component
 import java.awt.Point
 import java.awt.Rectangle

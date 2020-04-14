@@ -1,4 +1,4 @@
-package com.savvasdalkitsis.multitouch.event
+package com.savvasdalkitsis.mac.gestures.event
 
 enum class Phase(val code: Int) {
 

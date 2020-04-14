@@ -1,6 +1,6 @@
-package com.savvasdalkitsis.multitouch
+package com.savvasdalkitsis.mac.gestures
 
-import com.savvasdalkitsis.multitouch.event.*
+import com.savvasdalkitsis.mac.gestures.event.*
 
 abstract class GestureAdapter : GestureListener {
 

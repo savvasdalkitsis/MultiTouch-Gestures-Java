@@ -1,4 +1,4 @@
-package com.savvasdalkitsis.multitouch.event
+package com.savvasdalkitsis.mac.gestures.event
 
 import java.awt.Component
 
